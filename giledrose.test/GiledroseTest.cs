@@ -25,7 +25,7 @@ namespace Giledrose.Test
         {
             this.itemsOriginal = getInventory();
             this.itemsUpdate = getInventory();
-            this.inventory = new Inventory(itemsUpdate);
+            this.inventory = new Inventory(this.itemsUpdate);
             this.inventory.updateQuality();
         }
 
@@ -56,7 +56,7 @@ namespace Giledrose.Test
         public void TestRegularProduct()
         {
             int previousSellIn = this.itemsOriginal[0].SellIn;
-            int previousQuality = this.itemsOriginal[0].Quality;
+            int previousQuality = this.itemsOriginal[0].Quality;            
             Assert.AreEqual(previousSellIn - 1, this.itemsUpdate[0].SellIn);
             Assert.AreEqual(previousQuality - 1, this.itemsUpdate[0].Quality);
         }

@@ -7,13 +7,15 @@ namespace Fiuba.Tecnicas.Giledrose
 {
     class ItemManager
     {
-        List<IInventoryItem> inventoryItems;
+        private List<IInventoryItem> inventoryItems;        
 
-        public ItemManager(List<Item> items)
+        public ItemManager(IEnumerable<Item> items)
         {
-            for (int i = 0; i < items.Count; i++)
+            this.inventoryItems = new List<IInventoryItem> {};
+            foreach (var item in items)
             {
-                inventoryItems.Add(this.createItem(items[i]));
+                IInventoryItem invItem = this.createItem(item);
+                inventoryItems.Add(invItem);
             }
 
 
@@ -23,7 +25,7 @@ namespace Fiuba.Tecnicas.Giledrose
         {
             if (isLegendary(item.Name)) return new InventoryItemLegendary(item);
             if (isConcert(item.Name)) return new InventoryItemConcert(item);
-            if (isConstantImprovement(item.Name)) return new InventoryItemConstantImprovement(item, Constants.normalQualityJump);
+            if (isConstantImprovement(item.Name)) return new InventoryItemConstantImprovement(item, Constants.normalQualityJump,Constants.doubleQualityJump);
             if (isDoubleDecay(item.Name)) return new InventoryItemDecay(item, 2 * Constants.normalQualityJump, 2 * Constants.doubleQualityJump);
             return new InventoryItemDecay(item,Constants.normalQualityJump,Constants.doubleQualityJump);
         }

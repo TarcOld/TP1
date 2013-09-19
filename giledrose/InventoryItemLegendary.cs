@@ -20,7 +20,7 @@ namespace Fiuba.Tecnicas.Giledrose
 
         public void updateSellIn()
         {
-            this.item.SellIn -= 1;
+            
         }
     }
 }
